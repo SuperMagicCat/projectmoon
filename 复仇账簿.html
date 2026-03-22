@@ -1,0 +1,935 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>中指 - 复仇账簿</title>
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "微软雅黑", sans-serif;
+        }
+
+        body {
+            background: #0a0419; 
+            color: #e0c3ff;
+            background-image: 
+                url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%235a2d82' fill-opacity='0.2' fill-rule='evenodd'/%3E%3C/svg%3E"),
+                linear-gradient(to bottom, #1a083d, #0a0419);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            position: relative;
+        }
+
+        .logo {
+            width: 320px;
+            height: 320px;
+            margin: 0 auto;
+
+            background: url("image/中指.png") no-repeat center;
+
+            background-size: contain;
+
+        }
+
+        .title {
+            font-size: 36px;
+            color: #9d4edd;
+            text-shadow: 0 0 10px #c77dff, 0 0 20px #9d4edd;
+            margin-top: 10px;
+            letter-spacing: 5px;
+        }
+
+
+        .tabs {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 30px;
+        }
+
+        .tab {
+            padding: 10px 30px;
+            background: #2b0f46;
+            border: 2px solid #9d4edd;
+            border-radius: 5px;
+            color: #e0c3ff;
+            font-size: 18px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .tab.active {
+            background: #5a2d82;
+            box-shadow: 0 0 15px #9d4edd;
+        }
+
+        .stats {
+            display: flex;
+            justify-content: center;
+            gap: 50px;
+            margin-bottom: 400px;
+            padding: 20px;
+            background: rgba(43, 15, 70, 0.5);
+            border-radius: 10px;
+            border: 1px solid #9d4edd;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .stat-item1 {
+            text-align: center;
+            background: rgba(43, 15, 70, 0.5); 
+            border-radius: 10px;
+            border: 1px solid #9d4edd;
+            padding: 20px 40px;
+            margin: 0 10px; 
+        }
+
+      
+        .stat-item2 {
+            text-align: center;
+            background: rgba(43, 15, 70, 0.5); 
+            border-radius: 10px;
+            border: 1px solid #9d4edd;
+            padding: 20px 40px;
+            margin: 0 10px; 
+        }
+
+        .stat-icon1 {
+            width: 60px;
+            height: 60px;
+            margin: 0 auto 10px;
+        background: url("image/账簿.png") no-repeat center;
+       
+        background-size: contain;
+        
+        }
+
+        .stat-icon2 {
+            width: 60px;
+            height: 60px;
+            margin: 0 auto 10px;
+        background: url("image/仇人.png") no-repeat center;
+      
+        background-size: contain;
+    
+        }
+
+        .stat-number {
+            font-size: 30px;
+            color: #c77dff;
+            font-weight: bold;
+        }
+
+        .stat-name {
+            font-size: 16px;
+            color: #e0c3ff;
+            margin-top: 5px;
+        }
+
+    
+        .revenge-container {
+            max-width: 800px;
+            margin: 0 auto;
+            margin-top: 20px;
+            background: rgba(43, 15, 70, 0.7);
+            border-radius: 10px;
+            border: 2px solid #9d4edd;
+            padding: 30px;
+            box-shadow: 0 0 20px rgba(157, 78, 221, 0.3);
+        }
+
+
+        .pending-container {
+            max-width: 800px;
+            margin: 0 auto;
+            margin-top: 20px;
+            background: rgba(43, 15, 70, 0.7);
+            border-radius: 10px;
+            border: 2px solid #9d4edd;
+            padding: 30px;
+            box-shadow: 0 0 20px rgba(157, 78, 221, 0.3);
+            display: none; 
+        }
+
+        /* 主页区域 */
+        .home-container {
+            max-width: 800px;
+            margin: 0 auto;
+            margin-top: 20px;
+            background: rgba(43, 15, 70, 0.7);
+            border-radius: 10px;
+            border: 2px solid #9d4edd;
+            padding: 30px;
+            box-shadow: 0 0 20px rgba(157, 78, 221, 0.3);
+            display: none; 
+            text-align: center;
+        }
+
+        .home-title {
+            font-size: 28px;
+            color: #c77dff;
+            margin-bottom: 20px;
+            text-shadow: 0 0 10px #9d4edd;
+        }
+
+        .home-desc {
+            font-size: 18px;
+            line-height: 1.8;
+            color: #f0e6ff;
+        }
+
+        .revenge-title {
+            font-size: 20px;
+            color: #c77dff;
+            margin-bottom: 15px;
+            border-bottom: 1px solid #9d4edd;
+            padding-bottom: 10px;
+        }
+
+        .revenge-content {
+            font-size: 18px;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            min-height: 60px;
+            color: #f0e6ff;
+        }
+
+        .punishment-title {
+            font-size: 20px;
+            color: #c77dff;
+            margin-bottom: 15px;
+            border-bottom: 1px solid #9d4edd;
+            padding-bottom: 10px;
+        }
+
+        .punishment-content {
+            font-size: 18px;
+            line-height: 1.6;
+            margin-bottom: 30px;
+            min-height: 60px;
+            color: #f0e6ff;
+        }
+
+
+        .pending-title {
+            font-size: 20px;
+            color: #c77dff;
+            margin-bottom: 15px;
+            border-bottom: 1px solid #9d4edd;
+            padding-bottom: 10px;
+        }
+
+        .pending-list {
+            list-style: none;
+            max-height: 600px;
+            overflow-y: auto;
+        }
+
+        .pending-item {
+            background: rgba(58, 22, 89, 0.6);
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-left: 3px solid #c77dff;
+        }
+
+        .pending-reason {
+            font-size: 16px;
+            color: #f0e6ff;
+            margin-bottom: 8px;
+        }
+
+        .pending-rule {
+            font-size: 16px;
+            color: #e0c3ff;
+            margin-bottom: 10px;
+        }
+
+        .pending-actions {
+            text-align: right;
+        }
+
+        .btn-delete {
+            padding: 6px 15px;
+            background: #7b183b;
+            color: #fff;
+            border: 1px solid #ff4d79;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn-delete:hover {
+            background: #9e1f4b;
+            box-shadow: 0 0 8px #ff4d79;
+        }
+
+        .btn-clear-all {
+            margin-top: 20px;
+            padding: 10px 30px;
+            background: #7b183b;
+            color: #fff;
+            border: 1px solid #ff4d79;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn-clear-all:hover {
+            background: #9e1f4b;
+            box-shadow: 0 0 8px #ff4d79;
+        }
+
+        .empty-tip {
+            font-size: 18px;
+            color: #e0c3ff;
+            text-align: center;
+            padding: 30px 0;
+        }
+
+
+        .btn-group {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .btn {
+            padding: 12px 40px;
+            border-radius: 5px;
+            font-size: 18px;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: none;
+        }
+
+        .btn-complete {
+            background: #5a2d82;
+            color: #e0c3ff;
+            border: 2px solid #9d4edd;
+        }
+
+        .btn-complete:hover {
+            background: #7b3cb6;
+            box-shadow: 0 0 10px #9d4edd;
+        }
+
+        .btn-uncomplete {
+            background: #2b0f46;
+            color: #e0c3ff;
+            border: 2px solid #7b3cb6;
+        }
+
+        .btn-uncomplete:hover {
+            background: #3a1659;
+            box-shadow: 0 0 10px #7b3cb6;
+        }
+
+
+        .custom-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .custom-modal.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal-content {
+            background: #2b0f46;
+            border: 3px solid #9d4edd;
+            border-radius: 10px;
+            padding: 30px;
+            min-width: 350px;
+            max-width: 500px;
+            box-shadow: 0 0 20px #c77dff;
+            text-align: center;
+        }
+
+        .modal-message {
+            font-size: 18px;
+            color: #f0e6ff;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+
+        .modal-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .modal-btn {
+            padding: 10px 30px;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: 2px solid #9d4edd;
+        }
+
+        .modal-confirm {
+            background: #5a2d82;
+            color: #e0c3ff;
+        }
+
+        .modal-confirm:hover {
+            background: #7b3cb6;
+            box-shadow: 0 0 10px #9d4edd;
+        }
+
+        .modal-cancel {
+            background: #1a083d;
+            color: #e0c3ff;
+        }
+
+        .modal-cancel:hover {
+            background: #2b0f46;
+            box-shadow: 0 0 10px #7b3cb6;
+        }
+
+
+        @media (max-width: 768px) {
+            .stats {
+                flex-direction: column;
+                gap: 20px;
+            }
+            .btn-group {
+                flex-direction: column;
+            }
+            .tab {
+                padding: 8px 20px;
+                font-size: 16px;
+            }
+            .pending-list {
+                max-height: 400px;
+            }
+            .modal-content {
+                min-width: 80%;
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="logo"></div>
+        <h1 class="title">复仇账簿</h1>
+    </div>
+
+    <div class="tabs">
+        <div class="tab active" data-tab="book">账簿</div>
+        <div class="tab" data-tab="pending">待复仇</div>
+        <div class="tab" data-tab="home">主页</div>
+    </div>
+
+    <div class="stats">
+        <div class="stat-item1">
+            <div class="stat-icon1"></div>
+            <div class="stat-number" id="revenge-book">0</div>
+            <div class="stat-name">复仇账簿</div>
+        </div>
+        <div class="stat-item2">
+            <div class="stat-icon2"></div>
+            <div class="stat-number" id="revenge-target">0</div>
+            <div class="stat-name">报复对象</div>
+        </div>
+    </div>
+
+
+    <div class="revenge-container" id="book-content">
+        <div class="revenge-title">复仇事由：</div>
+        <div class="revenge-content" id="revenge-reason"></div>
+
+        <div class="punishment-title">处理条款：</div>
+        <div class="punishment-content" id="punishment-rule"></div>
+
+        <div class="btn-group">
+            <button class="btn btn-complete" onclick="handleComplete()">已处决</button>
+            <button class="btn btn-uncomplete" onclick="handleUncomplete()">未处决</button>
+        </div>
+    </div>
+
+  
+    <div class="pending-container" id="pending-content">
+        <div class="pending-title">待处决复仇事项</div>
+        <ul class="pending-list" id="pending-list">
+            <li class="empty-tip">暂无待复仇事项</li>
+        </ul>
+        <div style="text-align: center; margin-top: 20px;">
+            <button class="btn-clear-all" onclick="clearAllPending()">清空所有待复仇事项</button>
+        </div>
+    </div>
+
+
+    <div class="home-container" id="home-content">
+        <div class="home-title">欢迎来到复仇账簿</div>
+        <div class="home-desc">
+            <p>这里是中指复仇的核心账簿，记录所有需要清算的恩怨</p>
+            <br>
+            <p>点击「账簿」标签生成随机复仇事由与处理条款</p>
+            <p>标记「未处决」的事项将存入「待复仇」列表</p>
+            <p>标记「已处决」的事项将累计报复对象数值</p>
+            <br>
+            <p>以血还血，以牙还牙，让所有亏欠家人的人付出代价！</p>
+        </div>
+    </div>
+
+
+    <div class="custom-modal" id="customModal">
+        <div class="modal-content">
+            <div class="modal-message" id="modalMessage"></div>
+            <div class="modal-buttons">
+                <button class="modal-btn modal-confirm" id="modalConfirm">确认</button>
+                <button class="modal-btn modal-cancel" id="modalCancel">取消</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+
+        let revengeBook = 0; 
+        let revengeTarget = 0; 
+        let pendingRevengeList = []; 
+
+        let modalCallback = null;
+
+  
+        const revengeReasons = [
+            "有小孩把冰淇淋撞在了幼弟身上",
+            "其偷走了里卡多的理发券",
+            "商贩缺斤少两欺骗了兄弟成员",
+            "邻人深夜制造噪音惊扰了先祖安息",
+            "食客恶意投诉损毁了店铺声誉",
+            "司机别车险些造成兄弟成员伤亡",
+            "店员态度恶劣呵斥了兄弟晚辈",
+            "租客拖欠租金并破坏房屋设施",
+            "网友恶意抹黑兄弟的名誉",
+            "同行恶意竞争抢夺兄弟生意",
+            "路人故意踩踏了供奉的祭品",
+            "被陌生路人狠狠瞪了一眼",
+            "酒馆老板故意给兄弟上了温掉的啤酒",
+            "裁缝偷工减料做坏了兄弟姐妹的祭祀长袍",
+            "邮差私藏了寄给兄弟的重要信件",
+            "医生误诊导致兄弟姐妹晚辈延误治疗",
+            "园丁修剪树木时损坏了先祖栽种的古木",
+            "理发师剪坏了里卡多珍视的发型",
+            "水果摊主故意挑烂果子卖给兄弟",
+            "银行柜员故意拖延办理兄弟的取款业务",
+            "保洁员打翻水桶弄湿了兄弟的新鞋",
+            "快递员把包裹扔在门口导致物品损坏",
+            "老师偏心训斥了兄弟姐妹的孩子",
+            "小贩在兄弟的摊位前恶意叫卖抢生意",
+            "邻居的狗半夜狂吠吵醒了整屋人",
+            "修车行故意谎报故障多收维修费用",
+            "书店老板拒绝兄弟借阅稀缺古籍",
+            "花店老板给的鲜花提前三天枯萎",
+            "电工维修时故意留下电路隐患",
+            "厨师在兄弟的饭菜里加了过量辣椒",
+            "摄影师拍坏了兄弟姐妹的祭祀合影",
+            "售票员故意少找了兄弟五枚硬币",
+            "房东无故涨租并拒绝退还押金",
+            "美甲师弄伤了兄弟的手指还拒不道歉",
+            "加油站员工加错油损坏了兄弟的车",
+            "翻译故意曲解兄弟姐妹的对外声明",
+            "纹身师纹错了兄弟指定的图腾图案",
+            "面包店卖的面包里吃出了玻璃渣",
+            "保安无端盘查并羞辱了兄弟成员",
+            "写手篡改了兄弟姐妹委托的复仇檄文",
+            "画家把先祖的肖像画得面目全非",
+            "洗车行洗坏了兄弟的真皮座椅",
+            "奶茶店少放了兄弟最爱的珍珠",
+            "开锁匠故意把锁芯弄坏索要高价",
+            "导游带错路让兄弟错过祭祀时辰",
+            "仓管私吞了兄弟姐妹储存的珍贵药材",
+            "调音师把乐器调得走音毁了演出",
+            "洗衣店洗丢了兄弟的祖传手帕",
+            "糕点师做的祭祀糕点味道发苦",
+            "纹身店学徒偷拿了兄弟的纹身颜料",
+            "渔夫故意给兄弟卖了不新鲜的鱼",
+            "木匠做的家具尺寸偏差无法使用",
+            "钟表匠修坏了先祖传下的怀表",
+            "鞋匠补的鞋底三天就脱落了",
+            "染坊把兄弟姐妹的布料染错了颜色",
+            "搬运工摔坏了兄弟姐妹的祭祀器皿",
+            "调酒师调的酒里掺了劣质酒精",
+            "贴膜师傅把兄弟的手机膜贴出气泡",
+            "宠物店主卖给兄弟病弱的宠物",
+            "印刷厂印错了兄弟姐妹的复仇账簿页码",
+            "焊工焊接的铁门三天就生锈变形",
+            "奶茶店员工故意多收了兄弟一块钱",
+            "快递柜超时收费却不提前提醒",
+            "面馆老板给的面量比平时少一半",
+            "开锁公司报价与实际收费不符",
+            "网约车司机绕路多收了二十元车费",
+            "照相馆修图把兄弟的脸修得扭曲",
+            "五金店卖的螺丝尺寸不符无法使用",
+            "冰淇淋摊主给的冰淇淋分量不足",
+            "修鞋匠用劣质胶水粘鞋导致开胶",
+            "文具店卖的钢笔写了两页就断墨",
+            "洗车工没洗干净兄弟车的内饰缝隙",
+            "咖啡店员工忘记加兄弟要的奶盖",
+            "搬家公司弄丢了兄弟的一箱书籍",
+            "打印店打印的文件字迹模糊不清",
+            "宠物店员工虐待了兄弟寄养的宠物",
+            "加油站少加了五升油却收了全款",
+            "理发店助理洗头时弄疼了兄弟的头皮",
+            "超市收银员装袋时弄碎了兄弟的鸡蛋",
+            "外卖员超时一小时还态度恶劣",
+            "修电脑师傅私拆了兄弟的硬盘",
+            "花店配送的花束少了预定的玫瑰",
+            "健身房教练故意误导兄弟的训练动作",
+            "干洗店把兄弟的西装洗缩水了",
+            "水果店老板把烂水果混进好果里",
+            "手机店换屏后故意留下指纹划痕",
+            "快递员私拆兄弟的包裹查看内容",
+            "面包店卖过期面包还拒不承认",
+            "出租车司机故意绕远路坑骗外地兄弟",
+            "美甲店用劣质甲油导致兄弟指甲发炎",
+            "维修工谎报维修项目骗取费用",
+            "书店店员把兄弟预定的书卖给别人",
+            "餐厅服务员把汤汁洒在兄弟衣服上",
+            "水电工故意接反水管导致漏水",
+            "裁缝把兄弟的衣服缝错了纽扣位置",
+            "奶茶店用过期原料做饮品",
+            "其勾结外敌毁灭了整个南部上层兄弟姐妹势力",
+            "政客污蔑兄弟姐妹参与黑市交易导致通缉",
+            "财团垄断资源断了兄弟姐妹的生存根基",
+            "敌对组织暗杀了兄弟姐妹三位核心成员",
+            "叛徒泄露兄弟姐妹复仇计划导致行动全败",
+            "军阀洗劫了兄弟姐妹在南部的所有产业",
+            "商会联合排挤让兄弟姐妹彻底退出市场",
+            "巫师诅咒兄弟姐妹晚辈接连暴病身亡",
+            "黑帮烧毁了兄弟姐妹的祖传祠堂",
+            "媒体捏造丑闻让兄弟姐妹身败名裂",
+            "其当众吐口水在兄弟的鞋子上",
+            "路人路过时故意撞了兄弟一下不道歉",
+            "小孩往兄弟的车窗上贴了脏贴纸",
+            "老人在公交上抢座还辱骂兄弟",
+            "店员背后议论兄弟的穿着打扮",
+            "网友在评论区诅咒兄弟全家",
+            "其偷拿了兄弟放在桌上的一颗糖"
+        ];
+
+
+        const punishmentRules = [
+            "将其全家全员处刑",
+            "没收全部财产充入宗族公库",
+            "永久驱逐出所在城市",
+            "废除其所有社会身份标识",
+            "让其承受十倍于受害者的痛苦",
+            "销毁其所有珍视之物",
+            "使其永远活在恐惧与愧疚之中",
+            "剥夺其所有社交关系与资源",
+            "让其为宗族无偿劳作十年",
+            "抹去其在世间的所有存在痕迹",
+            "往其日常饮水里掺入致幻药剂",
+            "拆毁其居住的房屋并填埋地基",
+            "切断其所有经济来源使其乞讨为生",
+            "公开其所有隐私与丑闻让其身败名裂",
+            "让其养的所有宠物离奇暴毙",
+            "使其每夜被噩梦缠身无法安睡",
+            "毁掉其赖以谋生的所有技能",
+            "在其常用物品上施加诅咒符咒",
+            "让其亲友全部与其反目成仇",
+            "冻结其所有银行账户与资产",
+            "往其食物中添加慢性致残药物",
+            "烧毁其珍藏的所有照片与回忆",
+            "使其欠下巨额高利贷无力偿还",
+            "让其在众目睽睽下跪地忏悔三天三夜",
+            "割掉其舌头使其永远无法言语",
+            "弄瞎其双眼使其不见天日",
+            "打断其双腿使其终身残疾",
+            "没收其祖传的所有遗物",
+            "使其经营的店铺彻底倒闭破产",
+            "让其子女被剥夺受教育的权利",
+            "往其住所投放大量毒虫鼠蚁",
+            "篡改其身份信息使其成为通缉犯",
+            "让其感染无法治愈的罕见疾病",
+            "炸毁其名下所有车辆与房产",
+            "使其被所有行业联合拉黑无法就业",
+            "用锁链锁住其四肢囚禁于暗室",
+            "抹去其在网络上的所有痕迹",
+            "让其替宗族承担所有债务",
+            "往其酒水中下迷药后抛至荒郊野岭",
+            "毁掉其容貌使其面目全非",
+            "没收其所有通讯工具使其与世隔绝",
+            "使其种植的所有作物全部枯死",
+            "让其饲养的牲畜全部染上瘟疫",
+            "公开其所有犯罪证据送其入狱",
+            "用烙铁在其身上烙下宗族耻辱印记",
+            "使其水源与耕地被污染无法使用",
+            "让其在寒冷的冬夜被扒光衣物扔至街头",
+            "偷走其所有贵重物品并销赃",
+            "使其驾照被吊销终身不得驾驶",
+            "让其被信任的人背刺与背叛",
+            "往其香烟中掺入有害物质",
+            "毁掉其所有电子设备与数据",
+            "使其被误诊为绝症惶惶不可终日",
+            "让其在暴雨夜被赶出家门无家可归",
+            "没收其所有医疗保障使其无钱治病",
+            "使其宠物被拐走并卖给屠宰场",
+            "往其化妆品中掺入腐蚀成分",
+            "让其所有投资全部血本无归",
+            "打断其手指使其无法从事精细劳作",
+            "烧毁其所有书籍与知识储备",
+            "使其被邻居集体排斥与孤立",
+            "往其汽油中掺入杂质毁掉发动机",
+            "让其婚礼/葬礼等重要场合彻底搞砸",
+            "没收其所有交通工具使其寸步难行",
+            "使其信用卡被盗刷欠下巨款",
+            "往其鱼缸/水族箱中投放毒药",
+            "让其子女被诱骗误入歧途",
+            "毁掉其所有艺术创作与心血",
+            "使其被诬陷犯下重罪百口莫辩",
+            "用噪音24小时骚扰使其无法休息",
+            "没收其所有保暖衣物使其挨冻",
+            "让其种植的花草全部枯萎死亡",
+            "往其牙膏中掺入辣椒水",
+            "使其手机被植入病毒泄露所有信息",
+            "让其被高利贷团伙无休止催收",
+            "毁掉其所有乐器使其无法演奏",
+            "使其店铺被恶意投诉关停整改",
+            "往其洗发水内掺入脱毛剂",
+            "让其在重要谈判中出错损失惨重",
+            "没收其所有首饰与奢侈品",
+            "使其被蜜蜂/马蜂群围攻蛰伤",
+            "毁掉其所有健身成果肌肉萎缩",
+            "让其快递包裹全部被调包或丢失",
+            "往其咖啡中掺入泻药",
+            "使其身份证丢失且无法补办",
+            "让其在求职时被恶意抹黑",
+            "烧毁其所有衣物使其无衣可穿",
+            "使其农田被洪水淹没颗粒无收",
+            "往其沐浴露中掺入过敏物质",
+            "让其所有社交账号被封禁",
+            "没收其所有收藏品与纪念品",
+            "使其被流浪狗群追咬受伤",
+            "毁掉其所有家具使其无处栖身",
+            "让其在公共场合出丑沦为笑柄",
+            "往其面粉/大米中掺入沙子",
+            "使其养老金被冒领一空",
+            "让其所有彩票中奖号码被篡改",
+            "炸毁其祖坟使其先祖不得安息",
+            "使其整个家族的血脉彻底断绝",
+            "用炸药夷平其家族所有产业",
+            "联合所有势力使其在城市中无立足之地",
+            "召唤怨灵日夜纠缠使其精神崩溃",
+            "将其灵魂封印于骷髅头中永世不得超生",
+            "让其所在的街区全部化为焦土",
+            "使其成为全人类的公敌被全球通缉",
+            "抽走其所有运气使其事事不顺",
+            "将其绑在十字架上暴晒三日",
+            "喂其吃下遗忘药剂忘掉所有美好记忆"
+        ];
+
+   
+        function getRandomItem(arr) {
+            return arr[Math.floor(Math.random() * arr.length)];
+        }
+
+   
+        function initPage() {
+            document.getElementById("revenge-reason").textContent = getRandomItem(revengeReasons);
+            document.getElementById("punishment-rule").textContent = getRandomItem(punishmentRules);
+            updateStats();
+            renderPendingList();
+        }
+
+ 
+        function updateStats() {
+            document.getElementById("revenge-book").textContent = revengeBook;
+            document.getElementById("revenge-target").textContent = revengeTarget;
+        }
+
+
+        function showAlert(message) {
+            return new Promise((resolve) => {
+                const modal = document.getElementById("customModal");
+                const modalMessage = document.getElementById("modalMessage");
+                const modalConfirm = document.getElementById("modalConfirm");
+                const modalCancel = document.getElementById("modalCancel");
+                
+
+                modalCancel.style.display = "none";
+
+                modalMessage.textContent = message;
+
+                modal.classList.add("show");
+                
+
+                const confirmHandler = () => {
+                    modal.classList.remove("show");
+                    modalConfirm.removeEventListener("click", confirmHandler);
+                    modalCancel.style.display = "inline-block"; 
+                    resolve();
+                };
+                modalConfirm.addEventListener("click", confirmHandler);
+            });
+        }
+
+ 
+        function showConfirm(message) {
+            return new Promise((resolve) => {
+                const modal = document.getElementById("customModal");
+                const modalMessage = document.getElementById("modalMessage");
+                const modalConfirm = document.getElementById("modalConfirm");
+                const modalCancel = document.getElementById("modalCancel");
+
+                modalCancel.style.display = "inline-block";
+
+                modalMessage.textContent = message;
+
+                modal.classList.add("show");
+                
+
+                const confirmHandler = () => {
+                    modal.classList.remove("show");
+                    modalConfirm.removeEventListener("click", confirmHandler);
+                    modalCancel.removeEventListener("click", cancelHandler);
+                    resolve(true);
+                };
+                
+
+                const cancelHandler = () => {
+                    modal.classList.remove("show");
+                    modalConfirm.removeEventListener("click", confirmHandler);
+                    modalCancel.removeEventListener("click", cancelHandler);
+                    resolve(false);
+                };
+                
+                modalConfirm.addEventListener("click", confirmHandler);
+                modalCancel.addEventListener("click", cancelHandler);
+            });
+        }
+
+
+        async function handleComplete() {
+            revengeTarget += 5;
+            updateStats();
+
+            initPage();
+            await showAlert("复仇已处决！报复对象数+5");
+        }
+
+        async function handleUncomplete() {
+            revengeBook += 5;
+
+            const currentReason = document.getElementById("revenge-reason").textContent;
+            const currentRule = document.getElementById("punishment-rule").textContent;
+
+            pendingRevengeList.push({
+                reason: currentReason,
+                rule: currentRule,
+                id: Date.now()
+            });
+            updateStats();
+
+            initPage();
+            await showAlert("复仇未处决！复仇账簿数+5，已加入待复仇列表");
+        }
+
+
+        function renderPendingList() {
+            const listEl = document.getElementById("pending-list");
+
+            listEl.innerHTML = "";
+
+            if (pendingRevengeList.length === 0) {
+                listEl.innerHTML = '<li class="empty-tip">暂无待复仇事项</li>';
+                return;
+            }
+  
+            pendingRevengeList.forEach(item => {
+                const li = document.createElement("li");
+                li.className = "pending-item";
+                li.innerHTML = `
+                    <div class="pending-reason"><strong>复仇事由：</strong>${item.reason}</div>
+                    <div class="pending-rule"><strong>处理条款：</strong>${item.rule}</div>
+                    <div class="pending-actions">
+                        <button class="btn-delete" onclick="deletePendingItem(${item.id})">删除此事项</button>
+                    </div>
+                `;
+                listEl.appendChild(li);
+            });
+        }
+
+        async function deletePendingItem(id) {
+            const result = await showConfirm("别忘了，中指，永不遗忘。此项已移交至长兄长姐");
+            if (result) {
+                pendingRevengeList = pendingRevengeList.filter(item => item.id !== id);
+                renderPendingList();
+            }
+        }
+
+
+        async function clearAllPending() {
+            if (pendingRevengeList.length === 0) {
+                await showAlert("暂无待复仇事项可清空");
+                return;
+            }
+            const result = await showConfirm("你还很弱小，剩下的全部交给兄弟姐妹们吧");
+            if (result) {
+                pendingRevengeList = [];
+                renderPendingList();
+            }
+        }
+
+
+        function switchTab(tabName) {
+
+            document.querySelectorAll(".tab").forEach(tab => {
+                tab.classList.remove("active");
+            });
+
+            document.querySelector(`.tab[data-tab="${tabName}"]`).classList.add("active");
+            
+
+            document.getElementById("book-content").style.display = "none";
+            document.getElementById("pending-content").style.display = "none";
+            document.getElementById("home-content").style.display = "none";
+
+            if (tabName === "book") {
+                document.getElementById("book-content").style.display = "block";
+            } else if (tabName === "pending") {
+                document.getElementById("pending-content").style.display = "block";
+                renderPendingList(); 
+            } else if (tabName === "home") {
+                document.getElementById("home-content").style.display = "block";
+            }
+        }
+
+
+        document.querySelectorAll(".tab").forEach(tab => {
+            tab.addEventListener("click", () => {
+                switchTab(tab.dataset.tab);
+            });
+        });
+
+
+        window.onload = initPage;
+    </script>
+</body>
+</html>
