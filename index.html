@@ -105,24 +105,48 @@
         }
 
         .stat-icon1 {
-            width: 60px;
-            height: 60px;
-            margin: 0 auto 10px;
-        background: url("image/账簿.png") no-repeat center;
-       
-        background-size: contain;
-        
-        }
+			width: 60px;
+			height: 60px;
+			margin: 0 auto 10px;
+			background: url("image/账簿.png") no-repeat center;
+			background-size: contain;
+		}
 
-        .stat-icon2 {
-            width: 60px;
-            height: 60px;
-            margin: 0 auto 10px;
-        background: url("image/仇人.png") no-repeat center;
-      
-        background-size: contain;
-    
-        }
+		.stat-icon2 {
+			width: 60px;
+			height: 60px;
+			margin: 0 auto 10px;
+			background: url("image/仇人.png") no-repeat center;
+			background-size: contain;
+		}
+
+		/* 原有媒体查询保留，新增图标适配 */
+		@media (max-width: 768px) {
+			.stats {
+				flex-direction: column;
+				gap: 20px;
+			}
+			.btn-group {
+				flex-direction: column;
+			}
+			.tab {
+				padding: 8px 20px;
+				font-size: 16px;
+			}
+			.pending-list {
+				max-height: 400px;
+			}
+			.modal-content {
+				min-width: 80%;
+				padding: 20px;
+			}
+			/* 新增手机端图标尺寸 */
+			.stat-icon1, .stat-icon2 {
+				width: 40px;
+				height: 40px;
+			}
+			}
+
 
         .stat-number {
             font-size: 30px;
